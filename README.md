@@ -83,4 +83,4 @@ The following plugins might be useful for Vite apps based around an `index.html`
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This library is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
