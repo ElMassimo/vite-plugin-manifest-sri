@@ -30,12 +30,9 @@
 [Vite] does [not provide support](https://github.com/vitejs/vite/issues/2377) for [subresource integrity][sri].
 
 Both <kbd>[vite-plugin-sri]</kbd> and <kbd>[rollup-plugin-sri]</kbd> are good
-options to automatically add an [`integrity`][sri] hash to script and link tags.
+options to automatically add an [`integrity`][sri] hash to script and link tags. However, these rely on transforming an HTML file, which is typically not the case when using a backend integration such as [Vite Ruby].
 
-However, these rely on transforming an HTML file, which is typically not
-the case when using a backend integration such as [Vite Ruby].
-
-This plugin will extend the [`manifest.json`][manifest] to include an [`integrity`][sri] field which can be used when [rendering] script and link tags.
+This plugin extends [`manifest.json`][manifest] to include an [`integrity`][sri] field which can be used when [rendering] tags.
 
 ## Installation 💿
 
