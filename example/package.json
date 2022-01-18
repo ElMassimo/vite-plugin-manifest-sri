@@ -1,0 +1,18 @@
+{
+  "name": "vite-plugin-manifest-sri-example",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "cross-env DEBUG=*ruby:* vite build --mode production",
+    "preview": "cross-env RAILS_ENV=production DEBUG=*ruby:* vite preview --open",
+    "now": "npm run build && npm run preview"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "vite": "^2.7",
+    "vite-plugin-manifest-sri": "workspace:*",
+    "vite-plugin-ruby": "^3.0.8"
+  }
+}
