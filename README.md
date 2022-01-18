@@ -60,6 +60,14 @@ export default defineConfig({
 Note that the [`build.manifest`](https://vitejs.dev/config/#build-manifest) option
 must be enabled in order to generate a `manifest.json` file ([Vite Ruby] enables it by default).
 
+### With [Vite Ruby] 💎
+
+Experimental support is [available](https://github.com/ElMassimo/vite_ruby/issues/176#issuecomment-1015920689), you can try it now by explicitly adding `4.0.0.alpha1` to your `Gemfile`:
+
+```ruby
+gem 'vite_rails', '~> 4.0.0.alpha1'
+```
+
 ## Configuration ⚙️
 
 The following options can be provided:
