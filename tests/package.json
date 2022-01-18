@@ -1,0 +1,7 @@
+{
+  "name": "vite-plugin-manifest-sri-tests",
+  "private": true,
+  "devDependencies": {
+    "vite-plugin-manifest-sri": "workspace:*"
+  }
+}
