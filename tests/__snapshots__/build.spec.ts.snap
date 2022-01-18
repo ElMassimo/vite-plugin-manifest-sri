@@ -1,0 +1,34 @@
+// Vitest Snapshot v1
+
+exports[`build > manifest snapshot 1`] = `
+"{
+  \\"entrypoints/main.ts\\": {
+    \\"file\\": \\"assets/main.30ee1dba.js\\",
+    \\"src\\": \\"entrypoints/main.ts\\",
+    \\"isEntry\\": true,
+    \\"dynamicImports\\": [
+      \\"dynamic.ts\\"
+    ],
+    \\"css\\": [
+      \\"assets/main.d8629f4e.css\\"
+    ],
+    \\"integrity\\": \\"sha384-2A5vUNf7cFDCWm6RTDPAnr/wmGjkQhXz4EP5keVPYX4OnI2Ws1iXgTQ70CTmC1Ux\\"
+  },
+  \\"dynamic.ts\\": {
+    \\"file\\": \\"assets/dynamic.da72ca8e.js\\",
+    \\"src\\": \\"dynamic.ts\\",
+    \\"isDynamicEntry\\": true,
+    \\"integrity\\": \\"sha384-KorBstcdnwE8bqEM96n5weR+Q9mNUAR0Hr7tewyfRadn5v1IY58p2bfjmnkxTotE\\"
+  }
+}"
+`;
+
+exports[`build > manifest snapshot 2`] = `
+"{
+  \\"entrypoints/styles.css\\": {
+    \\"file\\": \\"assets/styles.6b73f2d0.css\\",
+    \\"src\\": \\"entrypoints/styles.css\\",
+    \\"integrity\\": \\"sha384-HmlJ0WJXVNLaqWQYVRhZgsW1JBN4XBjm3j+j38nagNFimvBxi8nZ1FUysAc9JJvL\\"
+  }
+}"
+`;
