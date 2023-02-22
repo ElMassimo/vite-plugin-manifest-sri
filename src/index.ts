@@ -39,7 +39,7 @@ declare module 'vite' {
   }
 }
 
-export default function manifestSRI(options: Options = {}): Plugin {
+export default function manifestSRI (options: Options = {}): Plugin {
   const {
     algorithms = ['sha384'],
     manifestPaths = ['manifest.json', 'manifest-assets.json'],
@@ -50,13 +50,13 @@ export default function manifestSRI(options: Options = {}): Plugin {
     name: 'vite-plugin-manifest-sri',
     apply: 'build',
     enforce: 'post',
-    async writeBundle({ dir }) {
+    async writeBundle ({ dir }) {
       await Promise.all(manifestPaths.map(path => augmentManifest(path, algorithms, dir!, chunkFinder)))
     },
   }
 }
 
-async function augmentManifest(manifestPath: string, algorithms: string[], outDir: string, chunkFinder: ChunkFinder) {
+async function augmentManifest (manifestPath: string, algorithms: string[], outDir: string, chunkFinder: ChunkFinder) {
   const resolveInOutDir = (path: string) => resolve(outDir, path)
   manifestPath = resolveInOutDir(manifestPath)
 
@@ -71,11 +71,11 @@ async function augmentManifest(manifestPath: string, algorithms: string[], outDi
   }
 }
 
-function integrityForAsset(source: Buffer, algorithms: string[]) {
+function integrityForAsset (source: Buffer, algorithms: string[]) {
   return algorithms.map(algorithm => calculateIntegrityHash(source, algorithm)).join(' ')
 }
 
-export function calculateIntegrityHash(source: Buffer, algorithm: string) {
+export function calculateIntegrityHash (source: Buffer, algorithm: string) {
   const hash = createHash(algorithm).update(source).digest().toString('base64')
   return `${algorithm.toLowerCase()}-${hash}`
 }
