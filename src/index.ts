@@ -5,9 +5,9 @@ import type { Plugin, Manifest, ManifestChunk } from 'vite'
 
 export type Algorithm = 'sha256' | 'sha384' | 'sha512'
 
-export type ChunkFinder = (manifest: Manifest) => ManifestChunk[]
+export type Transformer<T> = (manifest: Manifest) => T
 
-export interface Options {
+export interface Options<T> {
   /**
    * Which hashing algorithms to use when calculate the integrity hash for each
    * asset in the manifest.
@@ -25,12 +25,9 @@ export interface Options {
   manifestPaths?: string[]
 
   /**
-   * A function that returns the chunks that should be augmented with the integrity hash.
-   * This can be useful if your manifest has already been transformed to a custom output format.
-   *
-   * @default (manifest) => Object.values(manifest)
-   */
-  chunkFinder?: ChunkFinder
+  * Transforms or formats the final manifest before it is written.
+  */
+  transformer?: Transformer<T>
 }
 
 declare module 'vite' {
@@ -39,24 +36,24 @@ declare module 'vite' {
   }
 }
 
-export default function manifestSRI (options: Options = {}): Plugin {
+export default function manifestSRI<T = Manifest>(options: Options<T> = {}): Plugin {
   const {
     algorithms = ['sha384'],
     manifestPaths = ['manifest.json', 'manifest-assets.json'],
-    chunkFinder = Object.values,
+    transformer = undefined,
   } = options
 
   return {
     name: 'vite-plugin-manifest-sri',
     apply: 'build',
     enforce: 'post',
-    async writeBundle ({ dir }) {
-      await Promise.all(manifestPaths.map(path => augmentManifest(path, algorithms, dir!, chunkFinder)))
+    async writeBundle({ dir }) {
+      await Promise.all(manifestPaths.map(path => augmentManifest(path, algorithms, dir!, transformer)))
     },
   }
 }
 
-async function augmentManifest (manifestPath: string, algorithms: string[], outDir: string, chunkFinder: ChunkFinder) {
+async function augmentManifest<T>(manifestPath: string, algorithms: string[], outDir: string, transformer?: Transformer<T>) {
   const resolveInOutDir = (path: string) => resolve(outDir, path)
   manifestPath = resolveInOutDir(manifestPath)
 
@@ -64,18 +61,19 @@ async function augmentManifest (manifestPath: string, algorithms: string[], outD
     = await fs.readFile(manifestPath, 'utf-8').then(JSON.parse, () => undefined)
 
   if (manifest) {
-    await Promise.all(chunkFinder(manifest).map(async (chunk) => {
+    await Promise.all(Object.values(manifest).map(async (chunk) => {
       chunk.integrity = integrityForAsset(await fs.readFile(resolveInOutDir(chunk.file)), algorithms)
     }))
-    await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2))
+    const dataToWrite = JSON.stringify(transformer === undefined ? manifest : transformer(manifest), null, 2)
+    await fs.writeFile(manifestPath, dataToWrite)
   }
 }
 
-function integrityForAsset (source: Buffer, algorithms: string[]) {
+function integrityForAsset(source: Buffer, algorithms: string[]) {
   return algorithms.map(algorithm => calculateIntegrityHash(source, algorithm)).join(' ')
 }
 
-export function calculateIntegrityHash (source: Buffer, algorithm: string) {
+export function calculateIntegrityHash(source: Buffer, algorithm: string) {
   const hash = createHash(algorithm).update(source).digest().toString('base64')
   return `${algorithm.toLowerCase()}-${hash}`
 }
