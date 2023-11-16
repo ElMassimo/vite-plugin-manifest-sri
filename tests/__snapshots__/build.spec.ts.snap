@@ -1,34 +1,32 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`build > manifest snapshot 1`] = `
 "{
+  \\"dynamic.ts\\": {
+    \\"file\\": \\"assets/dynamic-y-YcnQ4I.js\\",
+    \\"isDynamicEntry\\": true,
+    \\"src\\": \\"dynamic.ts\\",
+    \\"integrity\\": \\"sha384-KorBstcdnwE8bqEM96n5weR+Q9mNUAR0Hr7tewyfRadn5v1IY58p2bfjmnkxTotE\\"
+  },
   \\"entrypoints/main.ts\\": {
-    \\"file\\": \\"assets/main.30ee1dba.js\\",
-    \\"src\\": \\"entrypoints/main.ts\\",
-    \\"isEntry\\": true,
+    \\"css\\": [
+      \\"assets/main-1h5ju1v-.css\\"
+    ],
     \\"dynamicImports\\": [
       \\"dynamic.ts\\"
     ],
-    \\"css\\": [
-      \\"assets/main.d8629f4e.css\\"
-    ],
-    \\"integrity\\": \\"sha384-2A5vUNf7cFDCWm6RTDPAnr/wmGjkQhXz4EP5keVPYX4OnI2Ws1iXgTQ70CTmC1Ux\\"
+    \\"file\\": \\"assets/main-dLnuJ4t2.js\\",
+    \\"isEntry\\": true,
+    \\"src\\": \\"entrypoints/main.ts\\",
+    \\"integrity\\": \\"sha384-vJj4PmZ9vllU99cNXZ5ozrfo6a0h/wUVLWsVtmbltVr32o549nSSXYMj8ZzenCLt\\"
   },
-  \\"dynamic.ts\\": {
-    \\"file\\": \\"assets/dynamic.da72ca8e.js\\",
-    \\"src\\": \\"dynamic.ts\\",
-    \\"isDynamicEntry\\": true,
-    \\"integrity\\": \\"sha384-KorBstcdnwE8bqEM96n5weR+Q9mNUAR0Hr7tewyfRadn5v1IY58p2bfjmnkxTotE\\"
-  }
-}"
-`;
-
-exports[`build > manifest snapshot 2`] = `
-"{
   \\"entrypoints/styles.css\\": {
-    \\"file\\": \\"assets/styles.6b73f2d0.css\\",
+    \\"file\\": \\"assets/styles-5G55TvLQ.css\\",
+    \\"isEntry\\": true,
     \\"src\\": \\"entrypoints/styles.css\\",
     \\"integrity\\": \\"sha384-HmlJ0WJXVNLaqWQYVRhZgsW1JBN4XBjm3j+j38nagNFimvBxi8nZ1FUysAc9JJvL\\"
   }
 }"
 `;
+
+exports[`build > manifest snapshot 2`] = `"{}"`;

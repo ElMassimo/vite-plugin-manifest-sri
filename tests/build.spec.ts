@@ -11,13 +11,12 @@ describe('build', () => {
   test('adds integrity hash', () => {
     const manifest = readManifest('manifest.json')
     expect(manifest['entrypoints/main.ts'].integrity)
-      .toEqual('sha384-2A5vUNf7cFDCWm6RTDPAnr/wmGjkQhXz4EP5keVPYX4OnI2Ws1iXgTQ70CTmC1Ux')
+      .toEqual('sha384-vJj4PmZ9vllU99cNXZ5ozrfo6a0h/wUVLWsVtmbltVr32o549nSSXYMj8ZzenCLt')
 
     expect(manifest['dynamic.ts'].integrity)
       .toEqual('sha384-KorBstcdnwE8bqEM96n5weR+Q9mNUAR0Hr7tewyfRadn5v1IY58p2bfjmnkxTotE')
 
-    const assetsManifest = readManifest('manifest-assets.json')
-    expect(assetsManifest['entrypoints/styles.css'].integrity)
+    expect(manifest['entrypoints/styles.css'].integrity)
       .toEqual('sha384-HmlJ0WJXVNLaqWQYVRhZgsW1JBN4XBjm3j+j38nagNFimvBxi8nZ1FUysAc9JJvL')
   })
 
@@ -32,7 +31,7 @@ function readManifest (path: string) {
 }
 
 function readAsset (path: string) {
-  return readFileSync(`${exampleRoot}/public/vite/${path}`, 'utf-8')
+  return readFileSync(`${exampleRoot}/public/vite/.vite/${path}`, 'utf-8')
 }
 
 function buildApp () {

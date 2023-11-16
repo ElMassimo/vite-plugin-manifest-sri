@@ -32,7 +32,7 @@ declare module 'vite' {
 export default function manifestSRI (options: Options = {}): Plugin {
   const {
     algorithms = ['sha384'],
-    manifestPaths = ['manifest.json', 'manifest-assets.json'],
+    manifestPaths = ['.vite/manifest.json', '.vite/manifest-assets.json', 'manifest.json', 'manifest-assets.json'],
   } = options
 
   return {

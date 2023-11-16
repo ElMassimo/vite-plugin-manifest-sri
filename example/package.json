@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "vite": "^2.7",
+    "vite": "^5",
     "vite-plugin-manifest-sri": "workspace:*",
-    "vite-plugin-ruby": "^3.0.8"
+    "vite-plugin-ruby": "^5.0.0"
   }
 }
