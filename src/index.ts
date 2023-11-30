@@ -26,6 +26,7 @@ export interface Options {
 declare module 'vite' {
   interface ManifestChunk {
     integrity: string
+    cssIntegrity?: string[]
   }
 }
 
@@ -55,6 +56,10 @@ async function augmentManifest (manifestPath: string, algorithms: string[], outD
   if (manifest) {
     await Promise.all(Object.values(manifest).map(async (chunk) => {
       chunk.integrity = integrityForAsset(await fs.readFile(resolveInOutDir(chunk.file)), algorithms)
+      if (chunk.css) {
+        chunk.cssIntegrity = await Promise.all(chunk.css.map(async css =>
+          integrityForAsset(await fs.readFile(resolveInOutDir(css)), algorithms)))
+      }
     }))
     await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2))
   }
