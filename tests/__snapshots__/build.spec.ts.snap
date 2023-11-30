@@ -18,7 +18,10 @@ exports[`build > manifest snapshot 1`] = `
     \\"file\\": \\"assets/main-dLnuJ4t2.js\\",
     \\"isEntry\\": true,
     \\"src\\": \\"entrypoints/main.ts\\",
-    \\"integrity\\": \\"sha384-vJj4PmZ9vllU99cNXZ5ozrfo6a0h/wUVLWsVtmbltVr32o549nSSXYMj8ZzenCLt\\"
+    \\"integrity\\": \\"sha384-vJj4PmZ9vllU99cNXZ5ozrfo6a0h/wUVLWsVtmbltVr32o549nSSXYMj8ZzenCLt\\",
+    \\"cssIntegrity\\": [
+      \\"sha384-bqzLq+mQSriGZYcwm8aYVPI+TilL6LHvyx/zGwJ8t3r08UKKjeIkeleDKAYTZT1J\\"
+    ]
   },
   \\"entrypoints/styles.css\\": {
     \\"file\\": \\"assets/styles-5G55TvLQ.css\\",

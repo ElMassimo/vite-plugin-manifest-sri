@@ -18,6 +18,9 @@ describe('build', () => {
 
     expect(manifest['entrypoints/styles.css'].integrity)
       .toEqual('sha384-HmlJ0WJXVNLaqWQYVRhZgsW1JBN4XBjm3j+j38nagNFimvBxi8nZ1FUysAc9JJvL')
+
+    expect(manifest['entrypoints/main.ts'].cssIntegrity[0])
+      .toEqual('sha384-bqzLq+mQSriGZYcwm8aYVPI+TilL6LHvyx/zGwJ8t3r08UKKjeIkeleDKAYTZT1J')
   })
 
   test('manifest snapshot', () => {
