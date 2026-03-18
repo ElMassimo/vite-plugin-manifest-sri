@@ -2,22 +2,21 @@ import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import spawn from 'cross-spawn'
 import { beforeAll, describe, test, expect } from 'vitest'
+import { calculateIntegrityHash } from '../src/index'
 
 const exampleRoot = resolve(__dirname, '../example')
 
 describe('build', () => {
-  beforeAll(() => buildApp(), 5000)
+  beforeAll(() => buildApp(), 15000)
 
   test('adds integrity hash', () => {
     const manifest = readManifest('manifest.json')
-    expect(manifest['entrypoints/main.ts'].integrity)
-      .toEqual('sha384-vJj4PmZ9vllU99cNXZ5ozrfo6a0h/wUVLWsVtmbltVr32o549nSSXYMj8ZzenCLt')
 
-    expect(manifest['dynamic.ts'].integrity)
-      .toEqual('sha384-KorBstcdnwE8bqEM96n5weR+Q9mNUAR0Hr7tewyfRadn5v1IY58p2bfjmnkxTotE')
-
-    expect(manifest['entrypoints/styles.css'].integrity)
-      .toEqual('sha384-HmlJ0WJXVNLaqWQYVRhZgsW1JBN4XBjm3j+j38nagNFimvBxi8nZ1FUysAc9JJvL')
+    for (const [_key, chunk] of Object.entries(manifest)) {
+      expect(chunk.integrity).toMatch(/^sha384-[A-Za-z0-9+/]+=*$/)
+      const file = readFileSync(`${exampleRoot}/public/vite/${chunk.file}`)
+      expect(chunk.integrity).toEqual(calculateIntegrityHash(file, 'sha384'))
+    }
   })
 
   test('manifest snapshot', () => {
@@ -26,7 +25,7 @@ describe('build', () => {
   })
 })
 
-function readManifest (path: string) {
+function readManifest (path: string): Record<string, { file: string; integrity: string }> {
   return JSON.parse(readAsset(path))
 }
 

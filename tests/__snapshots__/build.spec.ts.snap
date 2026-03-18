@@ -2,29 +2,35 @@
 
 exports[`build > manifest snapshot 1`] = `
 "{
-  \\"dynamic.ts\\": {
-    \\"file\\": \\"assets/dynamic-y-YcnQ4I.js\\",
-    \\"isDynamicEntry\\": true,
-    \\"src\\": \\"dynamic.ts\\",
-    \\"integrity\\": \\"sha384-KorBstcdnwE8bqEM96n5weR+Q9mNUAR0Hr7tewyfRadn5v1IY58p2bfjmnkxTotE\\"
+  "dynamic.ts": {
+    "file": "assets/dynamic-BrgQ1vzg.js",
+    "name": "dynamic",
+    "src": "dynamic.ts",
+    "isDynamicEntry": true,
+    "integrity": "sha384-GJAx2tTlnrovFHmePWNiPLHvadJr/cQyqJeLN/9w5WoKr8Cj6BFRfM0LG/kbhldO"
   },
-  \\"entrypoints/main.ts\\": {
-    \\"css\\": [
-      \\"assets/main-1h5ju1v-.css\\"
+  "entrypoints/main.ts": {
+    "file": "assets/main-DUjfwqDf.js",
+    "name": "entrypoints/main.ts",
+    "src": "entrypoints/main.ts",
+    "isEntry": true,
+    "dynamicImports": [
+      "dynamic.ts"
     ],
-    \\"dynamicImports\\": [
-      \\"dynamic.ts\\"
+    "css": [
+      "assets/main-CGguj4N9.css"
     ],
-    \\"file\\": \\"assets/main-dLnuJ4t2.js\\",
-    \\"isEntry\\": true,
-    \\"src\\": \\"entrypoints/main.ts\\",
-    \\"integrity\\": \\"sha384-vJj4PmZ9vllU99cNXZ5ozrfo6a0h/wUVLWsVtmbltVr32o549nSSXYMj8ZzenCLt\\"
+    "integrity": "sha384-O9HQerN6nAzUV46qTmEnj8KnrT3mk4AZKPVXsLXBNpa9ckGM994BRufqYOrycqG1"
   },
-  \\"entrypoints/styles.css\\": {
-    \\"file\\": \\"assets/styles-5G55TvLQ.css\\",
-    \\"isEntry\\": true,
-    \\"src\\": \\"entrypoints/styles.css\\",
-    \\"integrity\\": \\"sha384-HmlJ0WJXVNLaqWQYVRhZgsW1JBN4XBjm3j+j38nagNFimvBxi8nZ1FUysAc9JJvL\\"
+  "entrypoints/styles.css": {
+    "file": "assets/styles-eZi_BSDY.css",
+    "name": "entrypoints/styles.css",
+    "names": [
+      "entrypoints/styles.css"
+    ],
+    "src": "entrypoints/styles.css",
+    "isEntry": true,
+    "integrity": "sha384-HmlJ0WJXVNLaqWQYVRhZgsW1JBN4XBjm3j+j38nagNFimvBxi8nZ1FUysAc9JJvL"
   }
 }"
 `;

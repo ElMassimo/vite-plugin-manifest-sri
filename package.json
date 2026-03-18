@@ -7,14 +7,11 @@
   ],
   "sideEffects": false,
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
     }
   },
   "license": "MIT",
@@ -36,45 +33,29 @@
     "plugin"
   ],
   "scripts": {
-    "lint": "eslint .",
-    "test": "vitest",
-    "dev": "npm run build -- --watch",
+    "lint": "vp lint",
+    "test": "vp test",
+    "dev": "vp pack --watch",
     "example": "npm -C example run dev",
     "example:build": "npm -C example run build",
     "example:now": "npm -C example run now",
-    "build": "tsup src/index.ts --dts --format cjs,esm --clean",
+    "build": "vp pack",
     "release": "node scripts/release.cjs",
     "prepublishOnly": "npm run build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags"
   },
   "devDependencies": {
-    "@mussi/eslint-config": "^0.5.1",
     "@types/debug": "^4.1.12",
-    "@types/node": "^18.18.9",
+    "@types/node": "^22.12.0",
     "conventional-changelog-cli": "^2.2.2",
     "cross-spawn": "^7.0.3",
     "enquirer": "^2.4.1",
-    "eslint": "^7.32.0",
     "minimist": "^1.2.8",
     "picocolors": "^1.0.0",
-    "rollup": "^4.4.1",
     "semver": "^7.5.4",
-    "tsup": "^7.2.0",
-    "typescript": "^4.9.5",
-    "vite": "^5.0.0",
-    "vitest": "^0.34"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@mussi/eslint-config"
-    ],
-    "globals": {
-      "$ref": "readonly",
-      "$computed": "readonly",
-      "$shallowRef": "readonly",
-      "$$": "readonly",
-      "$": "readonly"
-    }
+    "typescript": "^5.7.0",
+    "vite": "^8.0.0",
+    "vite-plus": "^0.1.12"
   }
 }
